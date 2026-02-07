@@ -93,36 +93,41 @@ start without it (with degraded functionality).
 
 ### What Needs Attention
 
-1. **Tests are purely unit-level.** All 63+ tests mock or compute in-memory.
+1. **`pino-pretty` was missing from dependencies.** All three backend services
+   reference `pino-pretty` as a transport in their logger, but it was not
+   listed in any `package.json`. This caused a crash on startup/migration.
+   **Fixed:** Added `pino-pretty@^10.3.0` to all three engine packages.
+
+2. **Tests are purely unit-level.** All 63+ tests mock or compute in-memory.
    There are zero tests that hit the actual database, make HTTP requests to
    running services, or test cross-service communication. This means:
    - Schema drift could go undetected
    - Route handler bugs (auth, validation, DB queries) are untested
    - Race conditions in concurrent wallet operations are untested
 
-2. **No test database configuration.** There is no `DB_NAME_TEST` or test
+3. **No test database configuration.** There is no `DB_NAME_TEST` or test
    environment override. Running integration tests would require manual
    setup of a separate database.
 
-3. **No Docker/docker-compose.** Every developer must install PostgreSQL and
+4. **No Docker/docker-compose.** Every developer must install PostgreSQL and
    Redis natively. This creates "works on my machine" problems.
 
-4. **No CI/CD pipeline.** Tests do not run automatically on push or PR.
+5. **No CI/CD pipeline.** Tests do not run automatically on push or PR.
    Regressions can reach the main branch undetected.
 
-5. **Secrets in LOCAL_SETUP.md.** The existing setup guide includes actual
+6. **Secrets in LOCAL_SETUP.md.** The existing setup guide includes actual
    Paystack test keys and R2 credentials inline. These should be kept in
    .env only, not in version-controlled documentation.
 
-6. **Redis is listed as a dependency but not universally used.** The
+7. **Redis is listed as a dependency but not universally used.** The
    marketplace-engine imports ioredis but Redis connection failures may not
    be handled gracefully if Redis is not running.
 
-7. **Gateway workspace is declared but empty/absent.** The root package.json
+8. **Gateway workspace is declared but empty/absent.** The root package.json
    lists `gateway` as a workspace, but the gateway service is not
    implemented. Running `npm install` may warn about this.
 
-8. **The `canvas` npm package** requires native system dependencies
+9. **The `canvas` npm package** requires native system dependencies
    (libcairo, libpango, libjpeg, libgif, librsvg). This will fail on a
    fresh machine without these libraries installed.
 
