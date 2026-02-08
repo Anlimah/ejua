@@ -11,7 +11,7 @@ const fs = require('fs');
 const path = require('path');
 const { getDb, testConnection, closeDb } = require('../utils/db');
 
-const MIGRATIONS_DIR = path.resolve(__dirname, '../migrations');
+const MIGRATIONS_DIR = path.resolve(__dirname, '../../migrations');
 
 async function ensureMigrationTable(db) {
   await db.raw(`

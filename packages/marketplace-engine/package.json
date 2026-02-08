@@ -8,7 +8,7 @@
     "start": "node src/server.js",
     "migrate": "node src/migrations/run.js up",
     "migrate:rollback": "node src/migrations/run.js down",
-    "seed": "node src/seeds/run.js",
+    "seed": "node seeds/run.js",
     "test": "jest --runInBand --forceExit",
     "test:watch": "jest --watch --runInBand"
   },
@@ -17,6 +17,7 @@
     "fastify": "^4.26.0",
     "@fastify/cors": "^9.0.0",
     "@fastify/helmet": "^11.1.0",
+    "@fastify/multipart": "^8.1.0",
     "@fastify/rate-limit": "^9.1.0",
     "@fastify/swagger": "^8.14.0",
     "@fastify/swagger-ui": "^3.0.0",

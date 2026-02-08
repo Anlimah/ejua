@@ -1,4 +1,4 @@
-# Ejua — Composable Commerce Platform
+# Ejua Ejua — Composable Commerce Platform
 
 A next-generation e-commerce ecosystem designed for the African market, built as composable microservices. Ejua closes the **Access Gap** — the distance between high consumer demand and low immediate liquidity — through integrated BNPL, automated marketing, and one-click social advertising.
 

@@ -41,6 +41,10 @@ async function buildServer() {
 
   await app.register(require('@fastify/helmet'));
 
+  await app.register(require('@fastify/multipart'), {
+    limits: { fileSize: 10 * 1024 * 1024 }, // 10 MB max
+  });
+
   await app.register(require('@fastify/rate-limit'), {
     max: 100,
     timeWindow: '1 minute',
