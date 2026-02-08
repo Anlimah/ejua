@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: 233 69 96;       /* ejua-500 */
+    --color-secondary: 26 26 46;      /* navy-900 */
+    --color-accent: 245 158 11;       /* gold-500 */
+    --color-background: 255 255 255;
+    --color-foreground: 26 26 46;
+    --color-muted: 248 248 252;
+    --color-border: 229 231 235;
+    --radius: 0.75rem;
+  }
+
+  * {
+    border-color: rgb(var(--color-border));
+  }
+
+  body {
+    color: rgb(var(--color-foreground));
+    background-color: rgb(var(--color-background));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-xl bg-ejua-500 px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-ejua-600 active:scale-[0.97] disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-xl border-2 border-navy-900 px-6 py-3 text-sm font-semibold text-navy-900 transition-all hover:bg-navy-900 hover:text-white active:scale-[0.97];
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium text-navy-700 transition-colors hover:bg-navy-50;
+  }
+
+  .card {
+    @apply rounded-2xl border border-gray-100 bg-white p-4 shadow-sm transition-shadow hover:shadow-md;
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold;
+  }
+
+  .badge-primary {
+    @apply badge bg-ejua-100 text-ejua-700;
+  }
+
+  .badge-success {
+    @apply badge bg-emerald-100 text-emerald-700;
+  }
+
+  .badge-gold {
+    @apply badge bg-amber-100 text-amber-700;
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm outline-none transition-colors placeholder:text-gray-400 focus:border-ejua-500 focus:ring-2 focus:ring-ejua-500/20;
+  }
+
+  .section-heading {
+    @apply text-2xl font-bold tracking-tight text-navy-900 md:text-3xl;
+  }
+
+  /* Installment price badge — signature Ejua element */
+  .installment-badge {
+    @apply inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-ejua-500 to-ejua-600 px-4 py-1.5 text-sm font-semibold text-white shadow-sm;
+  }
+}
+
+/* Scrollbar styling */
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
